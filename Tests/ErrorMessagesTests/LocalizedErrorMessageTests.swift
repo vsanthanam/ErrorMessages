@@ -36,5 +36,8 @@ func localizedErrorMessageUsesMessageForUserFacingDescriptions() async throws {
     #expect(error.column == 38)
     #expect(error.description == "Please try again later.")
     #expect(error.errorDescription == "Please try again later.")
-    #expect(error.debugDescription == "ErrorMessagesTests/ErrorMessageTests.swift:errorMessageStoresMetadataAndFormatsDescription():13:38: Something went wrong")
+    #expect(error.debugDescription == """
+        ErrorMessagesTests/LocalizedErrorMessageTests.swift:localizedErrorMessageUsesMessageForUserFacingDescriptions():31:38: Please try again later.
+        """
+    )
 }

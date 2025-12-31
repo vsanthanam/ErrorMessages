@@ -29,7 +29,7 @@ public struct LocalizedErrorMessage: LocalizedError, CustomStringConvertible, Cu
 
     /// Create a user facing error message
     /// - Parameters:
-    ///   - localizedMessage: An error messages suitable to display to end users
+    ///   - localizedMessage: A localized message explaining the error, suitable for end users.
     ///   - file: The file where the error occured
     ///   - function: The function where the error occured
     ///   - line: The line number where the error occured
@@ -50,14 +50,19 @@ public struct LocalizedErrorMessage: LocalizedError, CustomStringConvertible, Cu
 
     // MARK: - API
 
+    /// A localized message explaining the error, suitable for end users.
     public let message: String
 
+    /// The file where the error occured
     public let file: StaticString
 
+    /// The function where the error occured
     public let function: StaticString
 
+    /// The line number where the error occured
     public let line: UInt
 
+    /// The column number where the error occured
     public let column: UInt
 
     // MARK: - LocalizedErrorMessage

@@ -1,5 +1,5 @@
 // ErrorMessages
-// OptionalExtensions.swift
+// OptionalExtensionsTests.swift
 //
 // MIT License
 //
@@ -23,30 +23,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-extension Optional {
+@testable import ErrorMessages
+import Testing
 
-    /// Unwrap the optional or throw an error if no value exists.
-    ///
-    /// - Parameters:
-    ///   - message: A descriptive message explaining the error
-    ///   - file: The file where the error occured
-    ///   - function: The function where the error occured
-    ///   - line: The line number where the error occured
-    ///   - column: The column number where the error occured
-    /// - Returns: The unwrapped optional
-    func mustExist(
-        _ message: @autoclosure () -> String,
-        file: StaticString = #fileID,
-        function: StaticString = #function,
-        line: UInt = #line,
-        column: UInt = #column
-    ) throws -> Wrapped {
-        switch self {
-        case let .some(wrapped):
-            wrapped
-        case .none:
-            throw ErrorMessage(message(), file: file, function: function, line: line, column: column)
-        }
+@Test
+func mustExistUnwrapsSomeValues() throws {
+    let value: String? = "Present"
+    let unwrapped = try value.mustExist("Missing")
+    #expect(unwrapped == "Present")
+}
+
+@Test
+func mustExistThrowsErrorMessageWhenNil() {
+    let value: String? = nil
+    do {
+        _ = try value.mustExist("Missing value")
+        Issue.record("Expected error to be thrown")
+    } catch let error as ErrorMessage {
+        #expect(error.message == "Missing value")
+        #expect(error.file.description == "ErrorMessagesTests/OptionalExtensionsTests.swift")
+        #expect(error.function.description == "mustExistThrowsErrorMessageWhenNil()")
+        #expect(error.line == 40)
+        #expect(error.column == 32)
+        #expect(error.description == "ErrorMessagesTests/OptionalExtensionsTests.swift:mustExistThrowsErrorMessageWhenNil():40:32: Missing value")
+    } catch {
+        Issue.record("Error thrown of unknown type")
     }
-
 }

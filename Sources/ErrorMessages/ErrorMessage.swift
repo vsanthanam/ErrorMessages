@@ -25,9 +25,9 @@
 
 public struct ErrorMessage: Error, CustomStringConvertible {
 
-    /// Create an rror message
+    /// Create an error message
     /// - Parameters:
-    ///   - message: An error message
+    ///   - message: A descriptive message explaining the error
     ///   - file: The file where the error occured
     ///   - function: The function where the error occured
     ///   - line: The line number where the error occured
@@ -46,14 +46,19 @@ public struct ErrorMessage: Error, CustomStringConvertible {
         self.column = column
     }
 
+    /// A descriptive message explaining the error
     public let message: String
 
+    /// The file where the error occured
     public let file: StaticString
 
+    /// The function where the error occured
     public let function: StaticString
 
+    /// The line number where the error occured
     public let line: UInt
 
+    /// The column number where the error occured
     public let column: UInt
 
     // MARK: - CustomStringConvertible

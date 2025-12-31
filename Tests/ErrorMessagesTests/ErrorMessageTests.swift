@@ -34,5 +34,5 @@ func errorMessageStoresMetadataAndFormatsDescription() {
     #expect(error.function.description == "errorMessageStoresMetadataAndFormatsDescription()")
     #expect(error.line == 31)
     #expect(error.column == 29)
-    #expect(error.description == "ErrorMessagesTests/ErrorMessageTests.swift:errorMessageStoresMetadataAndFormatsDescription():13:29: Something went wrong")
+    #expect(error.description == "ErrorMessagesTests/ErrorMessageTests.swift:errorMessageStoresMetadataAndFormatsDescription():31:29: Something went wrong")
 }
