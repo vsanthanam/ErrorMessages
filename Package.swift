@@ -5,22 +5,30 @@ import PackageDescription
 
 let package = Package(
     name: "ErrorMessages",
+    platforms: [
+        .macOS(.v14),
+        .macCatalyst(.v17),
+        .iOS(.v17),
+        .tvOS(.v17),
+        .visionOS(.v1)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "ErrorMessages",
-            targets: ["ErrorMessages"]
-        ),
+            targets: [
+                "ErrorMessages"
+            ]
+        )
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "ErrorMessages"
         ),
         .testTarget(
             name: "ErrorMessagesTests",
-            dependencies: ["ErrorMessages"]
-        ),
+            dependencies: [
+                "ErrorMessages"
+            ]
+        )
     ]
 )
