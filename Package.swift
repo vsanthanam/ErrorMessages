@@ -23,12 +23,24 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "ErrorMessages"
+            name: "ErrorMessages",
+            swiftSettings: [
+                .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+                .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("MemberImportVisibility"),
+                .treatAllWarnings(as: .error)
+            ]
         ),
         .testTarget(
             name: "ErrorMessagesTests",
             dependencies: [
                 "ErrorMessages"
+            ],
+            swiftSettings: [
+                .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+                .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("MemberImportVisibility"),
+                .treatAllWarnings(as: .error)
             ]
         )
     ]
